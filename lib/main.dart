@@ -2,6 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:intl/intl.dart';
+import 'package:pomodoro/settings_drawer.dart';
+
+import 'custom_appbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,9 +37,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _isStart = false;
-  int _start = 10;
+  int _current = -1;
   int _max = 10;
+  double _percent = 0.0;
   Timer _timer;
+  final DateFormat dateFormat = DateFormat('mm:ss');
 
   void startTimer() {
     if (!_isStart) {
@@ -43,15 +49,20 @@ class _MyHomePageState extends State<MyHomePage> {
       _timer = new Timer.periodic(
         oneSec,
         (Timer timer) {
-          if (_start == 0) {
+          if (_current == -1) {
+            _current = _max;
+          }
+          else if (_current == 0) {
             setState(() {
               timer.cancel();
-              _start = 10;
+              _current = _max;
+              _percent = 0.0;
               _isStart = !_isStart;
             });
           } else {
             setState(() {
-              _start--;
+              _percent += (1 / _max);
+              _current--;
             });
           }
         },
@@ -68,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    _current = _max;
     _timer = Timer.periodic(Duration(minutes: 5), (timer) {
       setState(() {});
     });
@@ -82,19 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: SettingsDrawer(),
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).accentColor,
-          centerTitle: true,
-          title: Text(
-            widget.title,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
-          ),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(45),
-          )),
-        ),
+        appBar: CustomAppBar('Settings'),
         body: Container(
           alignment: Alignment.bottomCenter,
           child: Column(
@@ -105,16 +107,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.center,
                     child: CircularPercentIndicator(
                       center: Text(
-                        '$_start',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40
-                        ),
+                        
+                        '${dateFormat.format(DateTime.fromMillisecondsSinceEpoch(1000 * _current))}',
+                        style: TextStyle(color: Colors.white, fontSize: 40),
                       ),
                       radius: MediaQuery.of(context).size.width * 0.9,
                       lineWidth: 20,
                       backgroundColor: Theme.of(context).accentColor,
-                      percent: (_max - _start) / 10,
+                      percent: _percent,
                       progressColor: Colors.white,
                       circularStrokeCap: CircularStrokeCap.round,
                       animation: true,
