@@ -107,7 +107,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.center,
                     child: CircularPercentIndicator(
                       center: Text(
-                        
                         '${dateFormat.format(DateTime.fromMillisecondsSinceEpoch(1000 * _current))}',
                         style: TextStyle(color: Colors.white, fontSize: 40),
                       ),
