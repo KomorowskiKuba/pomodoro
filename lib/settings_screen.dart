@@ -19,6 +19,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   int _amountOfSessions = 4;
   bool _notificationsEnabled = false;
   bool _autoStartBreaksEnabled = false;
+  bool _autoStartSessionsEnabled = false;
+  bool _vibrationsEnabled = false;
+  bool _keepPhoneAwakeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -335,12 +338,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    'Amount of sessions:',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
+                                  Container(
+                                    child: Text(
+                                      'Amount of sessions before break:',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   Spacer(),
                                   TextButton(
@@ -364,7 +369,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             TextStyle(color: Colors.blue),
                                         onConfirm:
                                             (Picker picker, List<int> value) {
-                                          // You get your duration here
                                           _amountOfSessions =
                                               picker.getSelectedValues()[0];
                                           setState(() {});
@@ -375,8 +379,62 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                 ],
                               ),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.90,
+                                      child: Row(children: [
+                                        Text(
+                                          'Autostart breaks:',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Spacer(),
+                                        Switch(
+                                          value: _autoStartBreaksEnabled,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _autoStartBreaksEnabled = value;
+                                            });
+                                          },
+                                          activeColor: Colors.orangeAccent,
+                                        )
+                                      ]),
+                                    )
+                                  ]),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.90,
+                                      child: Row(children: [
+                                        Text(
+                                          'Autostart sessions:',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Spacer(),
+                                        Switch(
+                                          value: _autoStartSessionsEnabled,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _autoStartSessionsEnabled = value;
+                                            });
+                                          },
+                                          activeColor: Colors.orangeAccent,
+                                        )
+                                      ]),
+                                    )
+                                  ]),
                             ]),
-                      )
+                      ),
                     ])
               ])),
           Card(
@@ -421,7 +479,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         0.90,
                                     child: Row(children: [
                                       Text(
-                                        'Autostart breaks:',
+                                        'Vibrations:',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 25,
@@ -429,17 +487,44 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       ),
                                       Spacer(),
                                       Switch(
-                                        value: _autoStartBreaksEnabled,
+                                        value: _vibrationsEnabled,
                                         onChanged: (value) {
                                           setState(() {
-                                            _autoStartBreaksEnabled = value;
+                                            _vibrationsEnabled = value;
                                           });
                                         },
                                         activeColor: Colors.orangeAccent,
                                       )
                                     ]),
                                   )
-                                ])
+                                ]),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.90,
+                                    child: Row(children: [
+                                      Text(
+                                        'Keep phone awake:',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Spacer(),
+                                      Switch(
+                                        value: _keepPhoneAwakeEnabled,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _keepPhoneAwakeEnabled = value;
+                                          });
+                                        },
+                                        activeColor: Colors.orangeAccent,
+                                      )
+                                    ]),
+                                  )
+                                ]),
                           ]),
                     ]),
               ])),
