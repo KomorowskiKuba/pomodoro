@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro/settings_screen.dart';
-import 'package:pomodoro/statistics_screen.dart';
+import 'package:pomodoro/screens/settings_screen.dart';
+import 'package:pomodoro/screens/statistics_screen.dart';
 
 class SettingsDrawer extends StatelessWidget {
   @override

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:pomodoro/models/day_model.dart';
 
-import 'custom_appbar.dart';
+import '../widgets/custom_appbar.dart';
+
 
 class StatisticsScreen extends StatefulWidget {
   StatisticsScreen({Key key}) : super(key: key);
@@ -99,12 +101,4 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ],
         ));
   }
-}
-
-class Day {
-  String name;
-  int amount;
-  int id;
-
-  Day(this.id, this.name, this.amount);
 }

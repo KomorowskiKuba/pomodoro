@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:intl/intl.dart';
-import 'package:pomodoro/settings_drawer.dart';
+import 'package:pomodoro/widgets/settings_drawer.dart';
 
-import 'custom_appbar.dart';
+import 'widgets/custom_appbar.dart';
 
 void main() {
   runApp(MyApp());
