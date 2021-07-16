@@ -2,8 +2,16 @@ library pomodoro.globals;
 
 import 'package:intl/intl.dart';
 
-const String longBreakDuration = 'LONGBREAKDURATION';
-const String shortBreakDuration = 'SHORTBREAKDURATION';
-const String sessionDuration = 'SESSIONDURATION';
+const String longBreakDurationName = 'LONGBREAKDURATION';
+const String shortBreakDurationName = 'SHORTBREAKDURATION';
+const String sessionDurationName = 'SESSIONDURATION';
+
+const String amountOfSessionsName = 'AMOUNTOFSESSIONS';
+const String autoStartBreaksEnabledName = 'AUTOSTARTBREAKSENABLED';
+const String autoStartSessionsEnabledName = 'AUTOSTARTSESSIONSENABLED';
+
+const String notificationsEnabledName = 'NOTIFICATIONSENABLEDNAME';
+const String vibrationsEnabledName = 'VIBRATIONSENABLEDNAME';
+const String keepPhoneAwakeEnabledName = 'KEEPPHONEAWAKEENABLEDNAME';
 
 final DateFormat dateFormat = DateFormat('mm:ss');
