@@ -2,6 +2,8 @@ library pomodoro.globals;
 
 import 'package:intl/intl.dart';
 
+enum AppState {session, shortBreak, longBreak}
+
 const String longBreakDurationName = 'LONGBREAKDURATION';
 const String shortBreakDurationName = 'SHORTBREAKDURATION';
 const String sessionDurationName = 'SESSIONDURATION';

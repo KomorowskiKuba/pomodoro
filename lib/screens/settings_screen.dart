@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_picker/flutter_picker.dart';
 import 'package:pomodoro/widgets/durations_settings_card.dart';
 import 'package:pomodoro/widgets/notifications_settings_card.dart';
 import 'package:pomodoro/widgets/session_settings_card.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
-import 'package:pomodoro/globals.dart' as globals;
 
 import '../widgets/custom_appbar.dart';
 
